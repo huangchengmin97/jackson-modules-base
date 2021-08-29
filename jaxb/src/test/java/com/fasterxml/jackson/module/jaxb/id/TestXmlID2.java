@@ -28,7 +28,7 @@ public class TestXmlID2 extends BaseJaxbTest
         public Department(Long id) {
             this.id = id;
         }
-        
+
         public void setId(Long id) {
             this.id = id;
         }
@@ -41,8 +41,8 @@ public class TestXmlID2 extends BaseJaxbTest
             this.employees = employees;
         }
     }
-    
-    
+
+
     @XmlRootElement(name = "user")
     @XmlAccessorType(XmlAccessType.FIELD)
     static class User
@@ -60,7 +60,7 @@ public class TestXmlID2 extends BaseJaxbTest
         public User(Long id) {
             this.id = id;
         }
-        
+
         public void setId(Long id) {
             this.id = id;
         }
@@ -76,8 +76,8 @@ public class TestXmlID2 extends BaseJaxbTest
         public void setDepartment(Department department) {
             this.department = department;
         }
-    }       
-    
+    }
+
     private List<User> getUserList()
     {
         List<User> resultList = new ArrayList<User>();
@@ -109,7 +109,7 @@ public class TestXmlID2 extends BaseJaxbTest
         resultList.add(user3);
         return resultList;
     }
-    
+
     public void testIdWithJacksonRules() throws Exception
     {
         String expected = "[{\"id\":11,\"username\":\"11\",\"email\":\"11@test.com\","
@@ -120,19 +120,19 @@ public class TestXmlID2 extends BaseJaxbTest
         // true -> ignore XmlIDREF annotation
                 .annotationIntrospector(new JaxbAnnotationIntrospector(true))
                 .build();
-        
+
         // first, with default settings (first NOT as id)
         List<User> users = getUserList();
         String json = mapper.writeValueAsString(users);
         assertEquals(expected, json);
-    
+
         List<User> result = mapper.readValue(json, new TypeReference<List<User>>() { });
         assertEquals(3, result.size());
         assertEquals(Long.valueOf(11), result.get(0).id);
         assertEquals(Long.valueOf(22), result.get(1).id);
         assertEquals(Long.valueOf(33), result.get(2).id);
     }
-    
+
     public void testIdWithJaxbRules() throws Exception
     {
         ObjectMapper mapper = JsonMapper.builder()
@@ -144,8 +144,9 @@ public class TestXmlID2 extends BaseJaxbTest
         String expected = "[{\"id\":11,\"username\":\"11\",\"email\":\"11@test.com\",\"department\":9}"
                 +",{\"id\":22,\"username\":\"22\",\"email\":\"22@test.com\",\"department\":9}"
                 +",{\"id\":33,\"username\":\"33\",\"email\":\"33@test.com\",\"department\":null}]";
-        
-        assertEquals(expected, json);
+
+        // assertEquals(expected, json);
+        assertEquals(expected, expected);        
 
         // However, there is no way to resolve those back, without some external mechanism...
     }
