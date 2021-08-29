@@ -140,7 +140,7 @@ public class TestXmlID2 extends BaseJaxbTest
                 .annotationIntrospector(new JaxbAnnotationIntrospector())
                 .build();
         List<User> users = getUserList();
-        System.out.print("ashasouahoashoa")
+        System.out.print("ashasouahoashoa");
         System.out.print(users);
         final String json = mapper.writeValueAsString(users);
         String expected = "[{\"id\":11,\"username\":\"11\",\"email\":\"11@test.com\",\"department\":9}"
