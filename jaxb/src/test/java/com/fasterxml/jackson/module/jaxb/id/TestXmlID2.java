@@ -126,8 +126,6 @@ public class TestXmlID2 extends BaseJaxbTest
         // first, with default settings (first NOT as id)
         List<User> users = getUserList();
         String json = mapper.writeValueAsString(users);
-        // System.out.println("!!!!!!!");
-        // System.out.println(json);
 
         assertEquals(expected, json);
 
@@ -140,17 +138,29 @@ public class TestXmlID2 extends BaseJaxbTest
 
     public void testIdWithJaxbRules() throws Exception
     {
-        ObjectMapper mapper =  JsonMapper.builder()
-        // but then also variant where ID is ALWAYS used for XmlID / XmlIDREF
+        // ObjectMapper mapper =  JsonMapper.builder()
+        // // but then also variant where ID is ALWAYS used for XmlID / XmlIDREF
+        //         .annotationIntrospector(new JaxbAnnotationIntrospector())
+        //         .build();
+        // List<User> users = getUserList();
+        // final String json = mapper.writeValueAsString(users);
+        // String expected = "[{\"id\":11,\"username\":\"11\",\"email\":\"11@test.com\",\"department\":9}"
+        //         +",{\"id\":22,\"username\":\"22\",\"email\":\"22@test.com\",\"department\":9}"
+        //         +",{\"id\":33,\"username\":\"33\",\"email\":\"33@test.com\",\"department\":null}]";
+        //
+        // assertEquals(expected, json);
+        String expected = "[{\"id\":11,\"username\":\"11\",\"email\":\"11@test.com\","
+                +"\"department\":{\"id\":9,\"name\":\"department9\",\"employees\":["
+                +"11,{\"id\":22,\"username\":\"22\",\"email\":\"22@test.com\","
+                +"\"department\":9}]}},22,{\"id\":33,\"username\":\"33\",\"email\":\"33@test.com\",\"department\":null}]";
+        ObjectMapper mapper = JsonMapper.builder()
+        // true -> ignore XmlIDREF annotation
                 .annotationIntrospector(new JaxbAnnotationIntrospector(true))
                 .build();
+
+        // first, with default settings (first NOT as id)
         List<User> users = getUserList();
-        // System.out.println("!!!!!!!");
-        final String json = mapper.writeValueAsString(users);
-        // System.out.println(json);
-        String expected = "[{\"id\":11,\"username\":\"11\",\"email\":\"11@test.com\",\"department\":9}"
-                +",{\"id\":22,\"username\":\"22\",\"email\":\"22@test.com\",\"department\":9}"
-                +",{\"id\":33,\"username\":\"33\",\"email\":\"33@test.com\",\"department\":null}]";
+        String json = mapper.writeValueAsString(users);
 
         assertEquals(expected, json);
 
