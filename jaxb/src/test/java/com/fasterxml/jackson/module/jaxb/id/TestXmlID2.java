@@ -15,7 +15,7 @@ public class TestXmlID2 extends BaseJaxbTest
 {
     @XmlRootElement(name = "department")
     @XmlAccessorType(XmlAccessType.FIELD)
-    // @XmlType(propOrder = {"street", "city", "province", "zipCode", "country"})
+    @XmlType(propOrder = {"id", "department", "email", "username"})
     static class Department {
         @XmlElement
         @XmlID
