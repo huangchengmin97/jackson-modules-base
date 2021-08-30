@@ -11,6 +11,7 @@ import com.fasterxml.jackson.module.jaxb.BaseJaxbTest;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+@Data
 @JsonPropertyOrder({"id", "username", "email" })
 public class TestXmlID2 extends BaseJaxbTest
 {
