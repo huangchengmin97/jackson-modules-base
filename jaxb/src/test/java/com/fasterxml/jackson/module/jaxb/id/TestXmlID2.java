@@ -126,6 +126,8 @@ public class TestXmlID2 extends BaseJaxbTest
         // first, with default settings (first NOT as id)
         List<User> users = getUserList();
         String json = mapper.writeValueAsString(users);
+        System.out.println("!!!!!!!");
+        final String json = mapper.writeValueAsString(users);
         assertEquals(expected, json);
 
         List<User> result = mapper.readValue(json, new TypeReference<List<User>>() { });
@@ -137,13 +139,14 @@ public class TestXmlID2 extends BaseJaxbTest
 
     public void testIdWithJaxbRules() throws Exception
     {
+        // ObjectMapper mapper =  JsonMapper.builder()
         ObjectMapper mapper =  JsonMapper.builder()
         // but then also variant where ID is ALWAYS used for XmlID / XmlIDREF
                 .annotationIntrospector(new JaxbAnnotationIntrospector())
                 .build();
         List<User> users = getUserList();
-        System.out.println("!!!!!!!");
-        final String json = mapper.writeValueAsString(users);
+        // System.out.println("!!!!!!!");
+        // final String json = mapper.writeValueAsString(users);
         System.out.println(json);
         String expected = "[{\"id\":11,\"username\":\"11\",\"email\":\"11@test.com\",\"department\":9}"
                 +",{\"id\":22,\"username\":\"22\",\"email\":\"22@test.com\",\"department\":9}"
