@@ -125,9 +125,9 @@ public class TestXmlID2 extends BaseJaxbTest
 
         // first, with default settings (first NOT as id)
         List<User> users = getUserList();
-        String json = mapper.writeValueAsString(users);
-        System.out.println("!!!!!!!");
-        System.out.println(json);
+        final String json = mapper.writeValueAsString(users);
+        // System.out.println("!!!!!!!");
+        // System.out.println(json);
 
         assertEquals(expected, json);
 
