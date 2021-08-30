@@ -110,6 +110,7 @@ public class TestXmlID2 extends BaseJaxbTest
         resultList.add(user3);
         return resultList;
     }
+    @XmlType(propOrder={"id", "department", "email","username"});
 
     public void testIdWithJacksonRules() throws Exception
     {
@@ -147,7 +148,7 @@ public class TestXmlID2 extends BaseJaxbTest
                 +",{\"id\":22,\"username\":\"22\",\"email\":\"22@test.com\",\"department\":9}"
                 +",{\"id\":33,\"username\":\"33\",\"email\":\"33@test.com\",\"department\":null}]";
 
-        assertEquals(mapper.writeValueAsString(getUserList()), json);
+        assertEquals(expected, json);
 
 
         // However, there is no way to resolve those back, without some external mechanism...
