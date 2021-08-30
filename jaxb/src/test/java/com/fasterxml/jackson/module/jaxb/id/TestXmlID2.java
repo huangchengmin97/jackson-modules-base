@@ -110,7 +110,7 @@ public class TestXmlID2 extends BaseJaxbTest
         resultList.add(user3);
         return resultList;
     }
-    @XmlType(propOrder={"id", "department", "email","username"});
+    @XmlType(propOrder={"id", "department", "email","username"})
 
     public void testIdWithJacksonRules() throws Exception
     {
