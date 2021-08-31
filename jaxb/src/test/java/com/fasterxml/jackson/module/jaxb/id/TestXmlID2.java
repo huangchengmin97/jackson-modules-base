@@ -152,7 +152,7 @@ public class TestXmlID2 extends BaseJaxbTest
                 .annotationIntrospector(new JaxbAnnotationIntrospector())
                 .build();
         List<User> users = getUserList();
-        ObjectMapper mapper =  new ObjectMapper()
+        ObjectMapper mapper =  ObjectMapper.builder()
                 .annotationIntrospector(new JaxbAnnotationIntrospector())
                 .build();
         final String json = mapper.writeValueAsString(users);
