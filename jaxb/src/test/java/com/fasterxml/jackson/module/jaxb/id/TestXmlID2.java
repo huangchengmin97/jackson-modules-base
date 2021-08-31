@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 public class TestXmlID2 extends BaseJaxbTest
 {
-    @JsonPropertyOrder({"id", "username", "email", "department" })
+
     @XmlRootElement(name = "department")
     @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -141,6 +141,7 @@ public class TestXmlID2 extends BaseJaxbTest
         assertEquals(Long.valueOf(33), result.get(2).id);
     }
 
+    @JsonPropertyOrder({"id", "username", "email", "department" })
     public void testIdWithJaxbRules() throws Exception
     {
         ObjectMapper mapper =  JsonMapper.builder()
