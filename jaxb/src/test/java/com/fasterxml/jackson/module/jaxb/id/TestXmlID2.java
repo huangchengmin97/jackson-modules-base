@@ -153,7 +153,7 @@ public class TestXmlID2 extends BaseJaxbTest
                 .build();
         List<User> users = getUserList();
         // ObjectMapper mapper =  new ObjectMapper（ ）;
-        // final String json = mapper.writeValueAsString(users);
+        final String json = mapper.writeValueAsString(users);
         System.out.println("#######");
         System.out.println(users[1]);
 
