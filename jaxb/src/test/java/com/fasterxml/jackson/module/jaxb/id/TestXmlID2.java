@@ -116,6 +116,8 @@ public class TestXmlID2 extends BaseJaxbTest
         resultList.add(user2);
         resultList.add(user3);
         return resultList;
+        System.out.println("#######");
+        System.out.println(user1);
     }
 
 
@@ -154,8 +156,8 @@ public class TestXmlID2 extends BaseJaxbTest
         List<User> users = getUserList();
         // ObjectMapper mapper =  new ObjectMapper（ ）;
         final String json = mapper.writeValueAsString(users);
-        System.out.println("#######");
-        System.out.println(users[1]);
+        // System.out.println("#######");
+        // System.out.println(users[1]);
 
         // String final = mapper2.writeValueAsString(json);
         // String splitted[] = json.split(",");
