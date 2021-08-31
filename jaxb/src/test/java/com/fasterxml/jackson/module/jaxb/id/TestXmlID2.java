@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 public class TestXmlID2 extends BaseJaxbTest
 {
-    @JsonPropertyOrder({"id", "username", "email", "department" })
+
     @XmlRootElement(name = "department")
     @XmlAccessorType(XmlAccessType.FIELD)
 
@@ -143,6 +143,7 @@ public class TestXmlID2 extends BaseJaxbTest
 
     public void testIdWithJaxbRules() throws Exception
     {
+        @JsonPropertyOrder({"id", "username", "email", "department" })
         ObjectMapper mapper =  JsonMapper.builder()
         // but then also variant where ID is ALWAYS used for XmlID / XmlIDREF
                 .annotationIntrospector(new JaxbAnnotationIntrospector())
