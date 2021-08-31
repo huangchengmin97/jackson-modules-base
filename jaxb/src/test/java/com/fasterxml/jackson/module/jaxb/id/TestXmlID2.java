@@ -12,7 +12,7 @@ import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
-
+@JsonPropertyOrder({"id", "username", "email", "department" })
 public class TestXmlID2 extends BaseJaxbTest
 {
 
@@ -141,7 +141,7 @@ public class TestXmlID2 extends BaseJaxbTest
         assertEquals(Long.valueOf(33), result.get(2).id);
     }
 
-    @JsonPropertyOrder({"id", "username", "email", "department" })
+
     public void testIdWithJaxbRules() throws Exception
     {
         ObjectMapper mapper =  JsonMapper.builder()
