@@ -4,16 +4,26 @@ import java.util.*;
 
 import javax.xml.bind.annotation.*;
 
+import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.module.jaxb.BaseJaxbTest;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+// import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+
+
+
+// @JsonPropertyOrder(alphabetic=true)
 
 public class TestXmlID2 extends BaseJaxbTest
 {
+
     @XmlRootElement(name = "department")
     @XmlAccessorType(XmlAccessType.FIELD)
+
+    // @XmlType(propOrder={"id", "department", "email","username"})
     static class Department {
         @XmlElement
         @XmlID
@@ -28,7 +38,7 @@ public class TestXmlID2 extends BaseJaxbTest
         public Department(Long id) {
             this.id = id;
         }
-        
+
         public void setId(Long id) {
             this.id = id;
         }
@@ -41,10 +51,11 @@ public class TestXmlID2 extends BaseJaxbTest
             this.employees = employees;
         }
     }
-    
-    
+
+
     @XmlRootElement(name = "user")
     @XmlAccessorType(XmlAccessType.FIELD)
+    @JsonPropertyOrder({"id", "username", "email",  "department" })
     static class User
     {
         @XmlElement @XmlID
@@ -60,7 +71,7 @@ public class TestXmlID2 extends BaseJaxbTest
         public User(Long id) {
             this.id = id;
         }
-        
+
         public void setId(Long id) {
             this.id = id;
         }
@@ -76,8 +87,8 @@ public class TestXmlID2 extends BaseJaxbTest
         public void setDepartment(Department department) {
             this.department = department;
         }
-    }       
-    
+    }
+
     private List<User> getUserList()
     {
         List<User> resultList = new ArrayList<User>();
@@ -108,8 +119,10 @@ public class TestXmlID2 extends BaseJaxbTest
         resultList.add(user2);
         resultList.add(user3);
         return resultList;
+
     }
-    
+
+
     public void testIdWithJacksonRules() throws Exception
     {
         String expected = "[{\"id\":11,\"username\":\"11\",\"email\":\"11@test.com\","
@@ -120,32 +133,50 @@ public class TestXmlID2 extends BaseJaxbTest
         // true -> ignore XmlIDREF annotation
                 .annotationIntrospector(new JaxbAnnotationIntrospector(true))
                 .build();
-        
+
         // first, with default settings (first NOT as id)
         List<User> users = getUserList();
         String json = mapper.writeValueAsString(users);
+
         assertEquals(expected, json);
-    
+
         List<User> result = mapper.readValue(json, new TypeReference<List<User>>() { });
         assertEquals(3, result.size());
         assertEquals(Long.valueOf(11), result.get(0).id);
         assertEquals(Long.valueOf(22), result.get(1).id);
         assertEquals(Long.valueOf(33), result.get(2).id);
     }
-    
+
+
     public void testIdWithJaxbRules() throws Exception
     {
-        ObjectMapper mapper = JsonMapper.builder()
+        // ObjectMapper mapper =  JsonMapper.builder()
+        ObjectMapper mapper =  newObjectMapper();
+
         // but then also variant where ID is ALWAYS used for XmlID / XmlIDREF
-                .annotationIntrospector(new JaxbAnnotationIntrospector())
-                .build();
+                // .annotationIntrospector(new JaxbAnnotationIntrospector())
+                // .build();
         List<User> users = getUserList();
+        // ObjectMapper mapper =  new ObjectMapper();
         final String json = mapper.writeValueAsString(users);
+        // System.out.println("#######");
+        // ObjectMapper mapper2 = new ObjectMapper();
+        // String x=mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(users);
+
+        // mapper.writeValue(System.out,users);
+        // String splitted[] = json.split(",");
+
+        // System.out.println(splitted[0]);
+
+
         String expected = "[{\"id\":11,\"username\":\"11\",\"email\":\"11@test.com\",\"department\":9}"
                 +",{\"id\":22,\"username\":\"22\",\"email\":\"22@test.com\",\"department\":9}"
                 +",{\"id\":33,\"username\":\"33\",\"email\":\"33@test.com\",\"department\":null}]";
-        
+        // System.out.println("???????????");
+        // System.out.println(expected);
+
         assertEquals(expected, json);
+
 
         // However, there is no way to resolve those back, without some external mechanism...
     }
