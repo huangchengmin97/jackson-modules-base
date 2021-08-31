@@ -155,7 +155,7 @@ public class TestXmlID2 extends BaseJaxbTest
         System.out.println(json);
         String splitted[] = json.split("}");
         System.out.println("!!!!!!!!!!!");
-        System.out.println(splitted[0]);
+        System.out.println(splitted[1]);
 
 
         String expected = "[{\"id\":11,\"username\":\"11\",\"email\":\"11@test.com\",\"department\":9}"
