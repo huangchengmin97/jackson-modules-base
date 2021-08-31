@@ -149,10 +149,12 @@ public class TestXmlID2 extends BaseJaxbTest
         // ObjectMapper mapper =  JsonMapper.builder()
         //
         // // but then also variant where ID is ALWAYS used for XmlID / XmlIDREF
-        //         .annotationIntrospector(new JaxbAnnotationIntrospector())
-        //         .build();
+                .annotationIntrospector(new JaxbAnnotationIntrospector())
+                .build();
         List<User> users = getUserList();
-        ObjectMapper mapper =  new ObjectMapper();
+        ObjectMapper mapper =  new ObjectMapper()
+                .annotationIntrospector(new JaxbAnnotationIntrospector())
+                .build();
         final String json = mapper.writeValueAsString(users);
         System.out.println("#######");
         System.out.println(json);
