@@ -148,18 +148,18 @@ public class TestXmlID2 extends BaseJaxbTest
 
     public void testIdWithJaxbRules() throws Exception
     {
-        // ObjectMapper mapper =  JsonMapper.builder()
-        //
-        // // but then also variant where ID is ALWAYS used for XmlID / XmlIDREF
-        //         .annotationIntrospector(new JaxbAnnotationIntrospector())
-        //         .build();
+        ObjectMapper mapper =  JsonMapper.builder()
+
+        // but then also variant where ID is ALWAYS used for XmlID / XmlIDREF
+                .annotationIntrospector(new JaxbAnnotationIntrospector())
+                .build();
         List<User> users = getUserList();
-        // // ObjectMapper mapper =  new ObjectMapper（ ）;
-        // final String json = mapper.writeValueAsString(users);
+        // ObjectMapper mapper =  new ObjectMapper（ ）;
+        final String json = mapper.writeValueAsString(users);
         // System.out.println("#######");
         // System.out.println(users[1]);
-        ObjectMapper mapper = new ObjectMapper();
-        //mapper.writerWithDefaultPrettyPrinter().writeValueAsString(users);
+        ObjectMapper mapper2 = new ObjectMapper();
+        mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(json);
         // String splitted[] = json.split(",");
         // System.out.println("!!!!!!!!!!!");
         // System.out.println(splitted[0]);
