@@ -151,7 +151,7 @@ public class TestXmlID2 extends BaseJaxbTest
     public void testIdWithJaxbRules() throws Exception
     {
         // ObjectMapper mapper =  JsonMapper.builder()
-        ObjectMapper mapper =  newObjectMapper()
+        ObjectMapper mapper =  newObjectMapper();
 
         // but then also variant where ID is ALWAYS used for XmlID / XmlIDREF
                 // .annotationIntrospector(new JaxbAnnotationIntrospector())
