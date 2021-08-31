@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 // @JsonPropertyOrder(alphabetic=true)
-
+@JsonPropertyOrder({"id", "email", "username", "department" })
 public class TestXmlID2 extends BaseJaxbTest
 {
 
@@ -145,21 +145,21 @@ public class TestXmlID2 extends BaseJaxbTest
         assertEquals(Long.valueOf(33), result.get(2).id);
     }
 
-@JsonPropertyOrder({"id", "email", "username", "department" })
+
     public void testIdWithJaxbRules() throws Exception
     {
-        ObjectMapper mapper =  JsonMapper.builder()
-
-        // but then also variant where ID is ALWAYS used for XmlID / XmlIDREF
-                .annotationIntrospector(new JaxbAnnotationIntrospector())
-                .build();
+        // ObjectMapper mapper =  JsonMapper.builder()
+        //
+        // // but then also variant where ID is ALWAYS used for XmlID / XmlIDREF
+        //         .annotationIntrospector(new JaxbAnnotationIntrospector())
+        //         .build();
         List<User> users = getUserList();
         // ObjectMapper mapper =  new ObjectMapper（ ）;
-        final String json = mapper.writeValueAsString(users);
+        // final String json = mapper.writeValueAsString(users);
         // System.out.println("#######");
         // System.out.println(users[1]);
         ObjectMapper mapper2 = new ObjectMapper();
-        String x=mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(json);
+        String x=mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(users);
         System.out.println("!!!!!!!!!!!");
         System.out.println(x);
         // String splitted[] = json.split(",");
