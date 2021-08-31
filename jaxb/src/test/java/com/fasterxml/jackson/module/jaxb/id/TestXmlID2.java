@@ -13,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 // @JsonPropertyOrder({"id", "email", "username", "department" })
+@JsonPropertyOrder(alphabetic=true)
+
 public class TestXmlID2 extends BaseJaxbTest
 {
 
@@ -153,9 +155,9 @@ public class TestXmlID2 extends BaseJaxbTest
         final String json = mapper.writeValueAsString(users);
         System.out.println("#######");
         System.out.println(json);
-        String splitted[] = json.split("}");
-        System.out.println("!!!!!!!!!!!");
-        System.out.println(splitted[1]);
+        // String splitted[] = json.split(",");
+        // System.out.println("!!!!!!!!!!!");
+        // System.out.println(splitted[0]);
 
 
         String expected = "[{\"id\":11,\"username\":\"11\",\"email\":\"11@test.com\",\"department\":9}"
