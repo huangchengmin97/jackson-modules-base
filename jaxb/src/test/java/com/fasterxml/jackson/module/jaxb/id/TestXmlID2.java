@@ -149,6 +149,7 @@ public class TestXmlID2 extends BaseJaxbTest
                 .build();
         List<User> users = getUserList();
         final String json = mapper.writeValueAsString(users);
+        System.out.println("!!!!!!!!!!!");
         System.out.println(json);
         String expected = "[{\"id\":11,\"username\":\"11\",\"email\":\"11@test.com\",\"department\":9}"
                 +",{\"id\":22,\"username\":\"22\",\"email\":\"22@test.com\",\"department\":9}"
