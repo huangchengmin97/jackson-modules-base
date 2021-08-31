@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.module.jaxb.BaseJaxbTest;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+// import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 
 
@@ -155,13 +155,14 @@ public class TestXmlID2 extends BaseJaxbTest
         //         .annotationIntrospector(new JaxbAnnotationIntrospector())
         //         .build();
         List<User> users = getUserList();
-        ObjectMapper mapper =  new XmlMapper();
-        final String json = mapper.writeValueAsString(users);
+        ObjectMapper mapper =  new ObjectMapper();
+        // final String json = mapper.writeValueAsString(users);
         // System.out.println("#######");
         // ObjectMapper mapper2 = new ObjectMapper();
         // String x=mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(users);
-        System.out.println("!!!!!!!!!!!");
-        System.out.println(json);
+        // System.out.println("!!!!!!!!!!!");
+        // System.out.println(json);
+        mapper.writeValue(System.out,users);
         // String splitted[] = json.split(",");
 
         // System.out.println(splitted[0]);
