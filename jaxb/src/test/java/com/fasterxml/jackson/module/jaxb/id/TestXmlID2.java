@@ -181,3 +181,34 @@ public class TestXmlID2 extends BaseJaxbTest
         // However, there is no way to resolve those back, without some external mechanism...
     }
 }
+
+public class JacksonTester {
+   public static void main(String args[]){
+      ObjectMapper mapper = new ObjectMapper();
+      try {
+         Student student = new Student("Mark", 1);
+         String jsonString = mapper
+            .writerWithDefaultPrettyPrinter()
+            .writeValueAsString(student);
+         System.out.println(jsonString);
+      }
+      catch (IOException e) {
+         e.printStackTrace();
+      }
+   }
+}
+@JsonPropertyOrder({ "rollNo", "name" })
+class Student {
+   private String name;
+   private int rollNo;
+   public Student(String name, int rollNo){
+      this.name = name;
+      this.rollNo = rollNo;
+   }
+   public String getName(){
+      return name;
+   }
+   public int getRollNo(){
+      return rollNo;
+   }
+}
