@@ -115,9 +115,10 @@ public class TestXmlID2 extends BaseJaxbTest
         resultList.add(user1);
         resultList.add(user2);
         resultList.add(user3);
-        return resultList;
         System.out.println("#######");
         System.out.println(user1);
+        return resultList;
+
     }
 
 
