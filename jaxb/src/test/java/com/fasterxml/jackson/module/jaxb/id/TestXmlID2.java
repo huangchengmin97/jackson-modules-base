@@ -12,7 +12,7 @@ import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
-// // @JsonPropertyOrder({"id", "email", "username", "department" })
+@JsonPropertyOrder({"id", "email", "username", "department" })
 // @JsonPropertyOrder(alphabetic=true)
 
 public class TestXmlID2 extends BaseJaxbTest
@@ -146,10 +146,12 @@ public class TestXmlID2 extends BaseJaxbTest
 
     public void testIdWithJaxbRules() throws Exception
     {
-        ObjectMapper mapper =  JsonMapper.builder()
-        // but then also variant where ID is ALWAYS used for XmlID / XmlIDREF
-                .annotationIntrospector(new JaxbAnnotationIntrospector())
-                .build();
+        // ObjectMapper mapper =  JsonMapper.builder()
+
+        // // but then also variant where ID is ALWAYS used for XmlID / XmlIDREF
+        //         .annotationIntrospector(new JaxbAnnotationIntrospector())
+        //         .build();
+        ObjectMapper mapper =  new ObjectMapper()
         List<User> users = getUserList();
 
         final String json = mapper.writeValueAsString(users);
