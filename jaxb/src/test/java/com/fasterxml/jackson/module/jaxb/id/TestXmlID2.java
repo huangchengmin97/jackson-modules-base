@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 public class TestXmlID2 extends BaseJaxbTest
 {
-    @JsonPropertyOrder({"id" "name", "email", "department" })
+    @JsonPropertyOrder({"id" "username", "email", "department" })
     @XmlRootElement(name = "department")
     @XmlAccessorType(XmlAccessType.FIELD)
     //
