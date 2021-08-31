@@ -157,7 +157,7 @@ public class TestXmlID2 extends BaseJaxbTest
         System.out.println("#######");
         System.out.println(json);
         ObjectMapper mapper2 =  new ObjectMapper();
-        final String final = mapper2.writeValueAsString(json);
+        String final = mapper2.writeValueAsString(json);
         // String splitted[] = json.split(",");
         // System.out.println("!!!!!!!!!!!");
         // System.out.println(splitted[0]);
