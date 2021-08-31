@@ -140,10 +140,10 @@ public class TestXmlID2 extends BaseJaxbTest
         assertEquals(Long.valueOf(22), result.get(1).id);
         assertEquals(Long.valueOf(33), result.get(2).id);
     }
-
+    @JsonPropertyOrder({"id", "username", "email", "department" })
     public void testIdWithJaxbRules() throws Exception
     {
-        @JsonPropertyOrder({"id", "username", "email", "department" })
+
         ObjectMapper mapper =  JsonMapper.builder()
         // but then also variant where ID is ALWAYS used for XmlID / XmlIDREF
                 .annotationIntrospector(new JaxbAnnotationIntrospector())
